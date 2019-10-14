@@ -1,0 +1,11 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Square",
+            "request": "launch",
+            "mainClass": "Square",
+            "projectName": "Week7_940379ab"
+        }
+    ]
+}

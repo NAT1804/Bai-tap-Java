@@ -1,0 +1,16 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Button",
+            "request": "launch",
+            "mainClass": "tutorial.Button"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Frame",
+            "request": "launch",
+            "mainClass": "tutorial.Frame"
+        }
+    ]
+}
