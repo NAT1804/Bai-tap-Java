@@ -1,7 +1,10 @@
-public class Circle extends Shape{
+import javax.swing.*;
+import java.awt.*;
+
+public class Circle extends Shape {
     final double PI = 3.14;
     protected double radius;
-    protected Point center;
+    protected Point center = new Point(100, 100);
 
     public Circle() {}
 
@@ -41,8 +44,6 @@ public class Circle extends Shape{
         if (object instanceof Circle) {
             Circle other = (Circle) object;
             if (Math.abs((double)Math.round((this.radius-other.radius)*1000)/1000) <= 0.001
-                    && this.color == other.color
-                    && this.filled == other.filled
                     && this.center.getX() == other.center.getX()
                     && this.center.getY() == other.center.getY()) {
                 return true;
@@ -51,8 +52,18 @@ public class Circle extends Shape{
         else return false;
     }
 
-    public int hashCode() {
-        return 0;
+    public void draw(Graphics graphics) {
+        graphics.setColor(Color.red);
+        graphics.fillOval((int)center.getX(), (int)center.getY(), 20, 20);
+    }
+
+    public void move() {
+        double x = center.getX();
+        x++;
+        center.setX(x);
+        double y = center.getX();
+        y++;
+        center.setY(y);
     }
 
     @Override
@@ -68,13 +79,5 @@ public class Circle extends Shape{
     @Override
     public String toString() {
         return "Circle[center="+center+",radius="+radius+",color="+color+",filled="+filled+"]";
-    }
-
-    public static void main(String[] args) {
-        Point p1 = new Point(0, 0);
-        Point p2 = new Point(1, 2);
-        Circle c = new Circle(p1, 5.00001, "red", true);
-        Circle a = new Circle(p2, 5, "red", true);
-        System.out.println(c.equals(a));
     }
 }

@@ -1,3 +1,5 @@
+import java.awt.*;
+
 public class Rectangle extends Shape{
     protected double width;
     protected double length;
@@ -59,8 +61,6 @@ public class Rectangle extends Shape{
             Rectangle other = (Rectangle) object;
             if (Math.abs((double)Math.round((this.width-other.width)*1000)/1000) <= 0.001
                     && Math.abs((double)Math.round((this.length-other.length)*1000)/1000) <= 0.001
-                    && this.color == other.color
-                    && this.filled == other.filled
                     && this.topLeft.getY() == other.topLeft.getY()
                     && this.topLeft.getX() == other.topLeft.getX()) {
                 return true;
@@ -69,8 +69,13 @@ public class Rectangle extends Shape{
         else return false;
     }
 
-    public int hashCode() {
-        return 0;
+    public void draw(Graphics graphics) {
+        graphics.setColor(Color.BLACK);
+        graphics.fillRect(200, 150, 90, 50);
+    }
+
+    public void move() {
+
     }
 
     @Override

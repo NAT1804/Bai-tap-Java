@@ -1,4 +1,6 @@
-public class Square extends Rectangle{
+import java.awt.*;
+
+public class Square extends Rectangle {
     public Square(double side) {
         width = side;
         length = side;
@@ -25,13 +27,20 @@ public class Square extends Rectangle{
         length = side;
     }
 
+    public void draw(Graphics graphics) {
+        graphics.setColor(Color.ORANGE);
+        graphics.fillRect(150, 200, 50, 50);
+    }
+
+    public void move() {
+
+    }
+
     @Override
     public boolean equals(Object object) {
         if (object instanceof Square) {
             Square other = (Square) object;
             if (Math.abs((double)Math.round((this.width-other.length)*1000)/1000) <= 0.001
-                    && this.color == other.color
-                    && this.filled == other.filled
                     && this.topLeft.getY() == other.topLeft.getY()
                     && this.topLeft.getX() == other.topLeft.getX()) {
                 return true;

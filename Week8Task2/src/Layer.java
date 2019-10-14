@@ -1,8 +1,18 @@
+import javax.swing.*;
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Layer {
+public class Layer extends JPanel implements Runnable{
     private List<Shape> shapes = new ArrayList<Shape>();
+    private Circle circle = new Circle();
+    private Rectangle rectangle = new Rectangle();
+    private Square square = new Square(5);
+
+    public Layer() {
+        Thread thread = new Thread(this);
+        thread.start();
+    }
 
     public void addShape(Shape shape) {
         shapes.add(shape);
@@ -67,20 +77,23 @@ public class Layer {
         }
     }
 
-    public static void main(String[] args) {
-        Layer layer = new Layer();
-        Point p1 = new Point(1, 2);
-        Point p2 = new Point(2, 3);
-        Shape a = new Circle(p1, 5, "red", true);
-        Shape b = new Rectangle(p1, 5, 5, "red", false);
-        Shape c = new Square(p2, 5, "red", false);
-        Shape d = new Circle(p1, 5, "blue", false);
-        layer.addShape(a);
-        layer.addShape(b);
-        layer.addShape(c);
-        layer.addShape(d);
-        layer.removeCircles();
-        layer.removeDuplicate();
-        System.out.println(layer.getInfo());
+    @Override
+    public void paint(Graphics graphics) {
+        //circle.draw(graphics);
+        rectangle.draw(graphics);
+        square.draw(graphics);
+    }
+
+    @Override
+    public void run() {
+        while(true) {
+            repaint();
+            try {
+                Thread.sleep(20);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            circle.move();
+        }
     }
 }
